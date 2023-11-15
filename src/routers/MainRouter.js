@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Link, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, NavLink, BrowserRouter } from 'react-router-dom'
 
 import { Home } from '../components/Home'
 import { Contact } from '../components/Contact'
@@ -9,6 +9,33 @@ import { Error } from '../components/Error'
 export const MainRouter = () => {
   return (
     <BrowserRouter >
+
+        <nav>
+            <ul>
+                <li>
+                    <NavLink 
+                        to="/home"
+                        className={(({ isActive }) => isActive ? "active" : "")}>
+                            Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/articles"
+                        className={(({ isActive }) => isActive ? "active" : "")}>
+                            Articles
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/contact"
+                        className={(({ isActive }) => isActive ? "active" : "")}>
+                            Contact
+                    </NavLink>
+                </li>
+            </ul>
+        </nav>
+
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/home' element={<Home />} />
