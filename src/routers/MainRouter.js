@@ -6,6 +6,11 @@ import { Contact } from '../components/Contact'
 import { Articles } from '../components/Aritcles'
 import { Error } from '../components/Error'
 import { Person } from '../components/Person'
+import { ControlPanel } from '../components/ControlPanel'
+import { Home as HomePanel } from '../components/panel/Home'
+import { Manage } from '../components/panel/Manage'
+import { About } from '../components/panel/About'
+import { Create } from '../components/panel/Create'
 
 export const MainRouter = () => {
   return (
@@ -34,6 +39,13 @@ export const MainRouter = () => {
                             Contact
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink 
+                        to="/panel"
+                        className={(({ isActive }) => isActive ? "active" : "")}>
+                            Control panel
+                    </NavLink>
+                </li>
             </ul>
         </nav>
 
@@ -46,6 +58,13 @@ export const MainRouter = () => {
             <Route path='/person/:name' element={<Person />} />
             <Route path='/person/:name/:lastname' element={<Person />} />
             <Route path='/redirect' element={<Navigate to="/person/edgar/vergara"/>} />
+            <Route path='/panel/*' element={<ControlPanel />}>
+                <Route index element={<HomePanel />}/>
+                <Route path='home' element={<HomePanel />}/>
+                <Route path='create-product' element={<Create />}/>
+                <Route path='manage-users' element={<Manage />}/>
+                <Route path='about' element={<About />}/>
+            </Route>
             <Route path='*' element={<Error />} />
         </Routes>
     </BrowserRouter>
